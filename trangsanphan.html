@@ -157,7 +157,7 @@
 
                 <h2>Máy massage</h2>
 
-                <span id="resultCount">4 sản phẩm</span>
+                <span id="resultCount">5 sản phẩm</span>
 
             </div>
 
@@ -194,7 +194,7 @@
                     <div class="product-thumb">
                         <span class="tag-badge">-17%</span>
                         <!-- Ảnh chính & ảnh đổi khi hover -->
-                        <img src="vn-11134207-81ztc-mtpfbej30g089d.webp" class="img-main" alt="Máy massage cầm tay">
+                        <img src="a3cf825e-fa63-4d85-8963-18b51c829ba5.png" class="img-main" alt="Máy massage cầm tay">
                         <img src="vn-11134207-81ztc-mtqt9acfe1vqd7.webp" class="img-hover" alt="Đầu massage thay thế">
                         <div class="quick-view-overlay">
                             <a href="trangsanphamchitiet1.html" class="quick-btn">👁️ Xem chi tiết</a>
@@ -223,7 +223,7 @@
                         <span class="tag-badge green-badge">Bán chạy</span>
                         <img src="vn-11134207-81ztc-mtpf8gzp6tj699.webp" class="img-main" alt="Máy massage chân">
                         <img src="vn-11134207-81ztc-mtqt8713l4ap93.webp" class="img-hover" alt="Khoang đặt chân máy massage">
-                        <div class="quivn-11134207-81ztc-mtqt8713l4ap93.webpck-view-overlay">
+                        <div class="quick-view-overlay">
                             <a href="trangsanphamchitiet2.html" class="quick-btn">👁️ Xem chi tiết</a>
                         </div>
                     </div>
@@ -386,7 +386,7 @@
                 <p class="footer-address">
                     Trạm thư giãn & Thiết bị chăm sóc sức khỏe tại gia.<br>
                     <strong>Địa chỉ:</strong> Số 150/8 Nguyễn Duy Cung, Phường 12, Gò Vấp, TP.HCM<br>
-                    <strong>Hotline:</strong> 09xx.xxx.xxx (Tư vấn 24/7)<br>
+                    <strong>Hotline:</strong> 0999998888 (Tư vấn 24/7)<br>
                     <strong>Email:</strong> support@relaxcare.vn
                 </p>
                 <div class="social-icons">
@@ -2137,5 +2137,118 @@ document.addEventListener("DOMContentLoaded", function () {
 <script src="js/cart.js"></script>
 <!-- JAVASCRIPT RIÊNG CHO TRANG SẢN PHẨM -->
     <script src="sanpham-massage.js"></script>
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const sortSelect = document.getElementById("sortSelect");
+    const productList = document.querySelector(".product-cards-row");
+
+    // Kiểm tra các thành phần cần thiết
+    if (!sortSelect || !productList) {
+        console.warn("Không tìm thấy mục sắp xếp hoặc danh sách sản phẩm.");
+        return;
+    }
+
+    // Lưu thứ tự ban đầu của sản phẩm
+    const originalProducts = Array.from(
+        productList.querySelectorAll(".product-item")
+    );
+
+    // Chuyển giá tiền từ chuỗi sang số
+    function getPrice(product, selector) {
+        const element = product.querySelector(selector);
+
+        if (!element) {
+            return 0;
+        }
+
+        const priceText = element.textContent;
+
+        return Number(priceText.replace(/[^\d]/g, "")) || 0;
+    }
+
+    // Lấy tên sản phẩm
+    function getName(product) {
+        const element = product.querySelector(".product-name");
+
+        return element
+            ? element.textContent.trim()
+            : "";
+    }
+
+    // Tính phần trăm giảm giá từ giá gốc và giá bán
+    function getDiscount(product) {
+        const currentPrice = getPrice(product, ".current-price");
+        const oldPrice = getPrice(product, ".old-price");
+
+        if (oldPrice <= 0 || currentPrice <= 0) {
+            return 0;
+        }
+
+        return ((oldPrice - currentPrice) / oldPrice) * 100;
+    }
+
+    // Sắp xếp khi khách hàng thay đổi lựa chọn
+    sortSelect.addEventListener("change", function () {
+
+        const sortType = sortSelect.value;
+
+        // Tạo bản sao để không làm mất thứ tự ban đầu
+        const products = [...originalProducts];
+
+        switch (sortType) {
+
+            // Trở về thứ tự ban đầu
+            case "featured":
+                break;
+
+            // Giá thấp đến cao
+            case "price-asc":
+                products.sort(function (a, b) {
+                    return getPrice(a, ".current-price") -
+                           getPrice(b, ".current-price");
+                });
+                break;
+
+            // Giá cao đến thấp
+            case "price-desc":
+                products.sort(function (a, b) {
+                    return getPrice(b, ".current-price") -
+                           getPrice(a, ".current-price");
+                });
+                break;
+
+            // Tên A–Z
+            case "name":
+                products.sort(function (a, b) {
+                    return getName(a).localeCompare(
+                        getName(b),
+                        "vi",
+                        { sensitivity: "base" }
+                    );
+                });
+                break;
+
+            // Phần trăm giảm giá cao nhất
+            case "discount":
+                products.sort(function (a, b) {
+                    return getDiscount(b) - getDiscount(a);
+                });
+                break;
+        }
+
+        // Cập nhật thứ tự hiển thị trên trang
+        const fragment = document.createDocumentFragment();
+
+        products.forEach(function (product) {
+            fragment.appendChild(product);
+        });
+
+        productList.appendChild(fragment);
+
+    });
+
+});
+</script>
 </body>
 </html>
