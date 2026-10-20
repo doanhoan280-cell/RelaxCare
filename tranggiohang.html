@@ -58,25 +58,57 @@
 <div class="layout"><div class="main"><section class="card"><div class="heading"><div><span class="step">BƯỚC 1</span><h2>Sản phẩm trong giỏ hàng</h2></div><span class="muted" id="cartItemCount">0 sản phẩm</span></div><div id="cartContent"><div class="empty"><div class="emoji">🛍️</div><h3>Giỏ hàng của bạn đang trống</h3><p>Hãy chọn sản phẩm RelaxCare mà bạn yêu thích nhé.</p><a class="btn" href="trangsanphan.html">Tiếp tục mua sắm</a></div></div></section>
 <section class="card"><div class="heading"><div><span class="step">BƯỚC 2</span><h2>Địa chỉ nhận hàng</h2></div><span class="muted">* Bắt buộc</span></div><p>Vui lòng nhập thông tin chính xác để đơn hàng được giao đến bạn.</p><form id="checkoutForm"><div class="grid"><div class="field"><label for="customerName">Họ và tên <span>*</span></label><input id="customerName" name="customerName" autocomplete="name" placeholder="Tên người nhận hàng" required></div><div class="field"><label for="customerPhone">Số điện thoại <span>*</span></label><input id="customerPhone" name="customerPhone" type="tel" pattern="[0-9+ .()-]{9,15}" autocomplete="tel" placeholder="Ví dụ: 09xxxxxxxx" required></div><div class="field"><label for="customerEmail">Email</label><input id="customerEmail" name="customerEmail" type="email" placeholder="ban@example.com"></div><div class="field"><label for="customerProvince">Tỉnh / Thành phố <span>*</span></label><input id="customerProvince" name="customerProvince" placeholder="Tỉnh hoặc thành phố" required></div><div class="field"><label for="customerDistrict">Quận / Huyện <span>*</span></label><input id="customerDistrict" name="customerDistrict" placeholder="Quận hoặc huyện" required></div><div class="field full"><label for="customerAddress">Địa chỉ cụ thể <span>*</span></label><input id="customerAddress" name="customerAddress" autocomplete="street-address" placeholder="Số nhà, tên đường, tòa nhà..." required></div><div class="field full"><label for="orderNote">Ghi chú đơn hàng</label><textarea id="orderNote" name="orderNote" rows="3" placeholder="Ghi chú cho người giao hàng (nếu có)"></textarea></div></div></form></section>
 <section class="card"><div class="heading"><div><span class="step">BƯỚC 3</span><h2>Phương thức thanh toán</h2></div></div><div class="methods"><label class="method"><input type="radio" name="paymentMethod" value="cod" checked form="checkoutForm"><span>💵</span><span><b>Thanh toán khi nhận hàng (COD)</b><small>Thanh toán tiền mặt khi nhận sản phẩm.</small></span></label><label class="method"><input type="radio" name="paymentMethod" value="bank" form="checkoutForm"><span>🏦</span><span><b>Chuyển khoản ngân hàng</b><small>Thông tin chuyển khoản được hướng dẫn sau khi xác nhận.</small></span></label><label class="method"><input type="radio" name="paymentMethod" value="momo" form="checkoutForm"><span>📱</span><span><b>Ví điện tử MoMo</b><small>Ghi nhận phương thức bạn lựa chọn.</small></span></label></div><p style="font-size:13px">Lưu ý: trang HTML tĩnh chưa kết nối cổng thanh toán trực tuyến. Đơn hàng demo được lưu trên trình duyệt.</p></section></div>
-<aside class="summary"><h2>Tóm tắt đơn hàng</h2><div class="row"><span>Số lượng sản phẩm</span><strong id="summaryQuantity">0</strong></div><div class="row"><span>Tạm tính</span><strong id="summarySubtotal">0₫</strong></div><div class="row"><span>Phí vận chuyển</span><strong id="summaryShipping">30.000₫</strong></div><hr class="divider"><div class="total"><span>Tổng thanh toán</span><strong id="summaryTotal">0₫</strong></div><div class="free" id="freeShippingNote">Đơn hàng từ 699.000₫ được miễn phí vận chuyển.</div><button class="btn" id="placeOrderBtn" type="submit" form="checkoutForm">🔒 Đặt hàng</button><p class="secure">Vui lòng kiểm tra thông tin và tổng tiền trước khi xác nhận đơn hàng.</p><a class="continue" href="san-pham.html">← Tiếp tục mua sắm</a><div id="checkoutNotice" class="notice" role="status" aria-live="polite"></div></aside></div></main><footer>© RelaxCare · Healthy &amp; Wellness</footer>
-<script>
-(()=>{'use strict';const KEY='relaxcare_cart_v1',ORDERS='relaxcare_orders_v1',FREE=699000,SHIP=30000;const P={'massage-cam-tay':{name:'Máy massage cầm tay RelaxCare - 3 Chế Độ, 6 Đầu Thay',price:1290000,image:'images/may-massage-cam-tay.jpg'},'massage-chan':{name:'Máy massage chân RelaxCare',price:1890000,image:'images/may-massage-chan.jpg'},'massage-bung':{name:'Máy massage bụng RelaxCare',price:890000,image:'images/may-massage-bung.jpg'},'dau-nong-massage':{name:'Dầu nóng massage thảo dược RelaxCare',price:149000,image:'images/dau-nong-massage.jpg'},'cao-dan-giam-dau':{name:'Cao dán giảm đau thảo dược RelaxCare - Hộp 10 Miếng',price:119000,image:'images/cao-dan-giam-dau.jpg'}};const $=id=>document.getElementById(id),money=n=>(Number(n)||0).toLocaleString('vi-VN')+'₫',esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-function read(){try{let x=JSON.parse(localStorage.getItem(KEY)||'{}');if(Array.isArray(x)){let o={};x.forEach(i=>{if(i)o[i.id||i.productId]={...i,id:i.id||i.productId,quantity:Number(i.quantity)||1}});x=o}return x&&typeof x==='object'?x:{}}catch(e){console.error(e);return{}}}function norm(raw){let o={};Object.entries(raw).forEach(([k,i])=>{if(!i||typeof i!=='object')return;let id=String(i.id||i.productId||k),p=P[id]||{},q=Math.floor(Number(i.quantity)||0);if(q>0)o[id]={id,name:String(i.name||p.name||id),price:Math.max(0,Number(i.price??p.price)||0),image:String(i.image||p.image||''),quantity:q}});return o}function save(c){try{localStorage.setItem(KEY,JSON.stringify(c));return true}catch(e){alert('Không thể lưu giỏ hàng trong trình duyệt.');return false}}function calc(c){let a=Object.values(c),qty=a.reduce((s,i)=>s+i.quantity,0),sub=a.reduce((s,i)=>s+i.price*i.quantity,0),ship=sub===0||sub>=FREE?0:SHIP;return{a,qty,sub,ship,total:sub+ship}}
-function render(){let c=norm(read()),t=calc(c);document.querySelectorAll('[data-cart-count],.cart-icon .badge').forEach(x=>x.textContent=t.qty);$('cartItemCount').textContent=t.qty+' sản phẩm';$('summaryQuantity').textContent=t.qty;$('summarySubtotal').textContent=money(t.sub);$('summaryShipping').textContent=money(t.ship);$('summaryTotal').textContent=money(t.total);$('shippingMessage').textContent=t.sub>=FREE?'Đơn hàng của bạn được miễn phí vận chuyển!':'Miễn phí vận chuyển cho đơn hàng từ 699.000₫';$('shippingSubMessage').textContent=t.sub>0&&t.sub<FREE?'Mua thêm '+money(FREE-t.sub)+' để được miễn phí vận chuyển.':'Phí giao hàng tiêu chuẩn là 30.000₫.';$('freeShippingNote').textContent=t.sub>=FREE?'Bạn đã được miễn phí vận chuyển cho đơn hàng này.':'Đơn hàng từ 699.000₫ được miễn phí vận chuyển.';$('placeOrderBtn').disabled=!t.qty;if(!t.a.length){$('cartContent').innerHTML='<div class="empty"><div class="emoji">🛍️</div><h3>Giỏ hàng của bạn đang trống</h3><p>Hãy chọn sản phẩm RelaxCare mà bạn yêu thích nhé.</p><a class="btn" href="san-pham.html">Tiếp tục mua sắm</a></div>';return}$('cartContent').innerHTML='<div class="items">'+t.a.map(i=>`<article class="item"><img src="${esc(i.image)}" alt="${esc(i.name)}" onerror="this.style.visibility='hidden'"><div><h3>${esc(i.name)}</h3><span class="muted">Đơn giá: ${money(i.price)}</span><br><span class="qty"><button type="button" data-minus="${esc(i.id)}">−</button><span>${i.quantity}</span><button type="button" data-plus="${esc(i.id)}">+</button></span><button type="button" class="remove" data-remove="${esc(i.id)}">Xóa</button></div><div class="price">${money(i.price*i.quantity)}</div></article>`).join('')+'</div>'}
-document.addEventListener('click',e=>{let b=e.target.closest('[data-plus],[data-minus],[data-remove]');if(!b)return;let c=norm(read()),id=b.getAttribute('data-plus')||b.getAttribute('data-minus')||b.getAttribute('data-remove');if(!c[id])return;if(b.hasAttribute('data-remove'))delete c[id];else{c[id].quantity+=b.hasAttribute('data-plus')?1:-1;if(c[id].quantity<=0)delete c[id]}if(save(c))render()});$('checkoutForm').addEventListener('submit',e=>{e.preventDefault();let c=norm(read()),t=calc(c),n=$('checkoutNotice');n.className='notice';if(!t.qty){n.className='notice err';n.textContent='Giỏ hàng đang trống. Hãy chọn sản phẩm trước khi đặt hàng.';return}if(!e.currentTarget.reportValidity())return;let f=new FormData(e.currentTarget),order={code:'RC'+Date.now().toString().slice(-9),createdAt:new Date().toISOString(),customer:Object.fromEntries(f.entries()),payment:document.querySelector('[name="paymentMethod"]:checked')?.value||'cod',items:t.a,subtotal:t.sub,shipping:t.ship,total:t.total,status:'pending'};try{let orders=JSON.parse(localStorage.getItem(ORDERS)||'[]');orders.push(order);localStorage.setItem(ORDERS,JSON.stringify(orders));save({});render();n.className='notice ok';n.innerHTML='<b>Đã tạo đơn hàng demo!</b><br>Mã đơn: '+esc(order.code)+'<br>Tổng thanh toán: '+money(order.total)+'<br>Đơn được lưu trong trình duyệt; chưa gửi đến hệ thống bán hàng hoặc cổng thanh toán thật.';n.scrollIntoView({behavior:'smooth',block:'center'})}catch(err){n.className='notice err';n.textContent='Không thể lưu đơn hàng. Vui lòng thử lại.'}});addEventListener('storage',e=>{if(e.key===KEY)render()});render()})();
-</script>
+<aside class="summary"><h2>Tóm tắt đơn hàng</h2><div class="row"><span>Số lượng sản phẩm</span><strong id="summaryQuantity">0</strong></div><div class="row"><span>Tạm tính</span><strong id="summarySubtotal">0₫</strong></div><div class="row"><span>Phí vận chuyển</span><strong id="summaryShipping">30.000₫</strong></div><hr class="divider"><div class="total"><span>Tổng thanh toán</span><strong id="summaryTotal">0₫</strong></div><div class="free" id="freeShippingNote">Đơn hàng từ 699.000₫ được miễn phí vận chuyển.</div><button class="btn" id="placeOrderBtn" type="submit" form="checkoutForm">🔒 Đặt hàng</button><p class="secure">Vui lòng kiểm tra thông tin và tổng tiền trước khi xác nhận đơn hàng.</p><a class="continue" href="san-pham.html">← Tiếp tục mua sắm</a><div id="checkoutNotice" class="notice" role="status" aria-live="polite"></div></aside></div>
+<section class="catalog-benefits">
+
+            <div class="benefit-item">
+
+                <i class="fa-solid fa-truck-fast"></i>
+
+                <div>
+                    <h3>Giao hàng toàn quốc</h3>
+                    <p>Miễn phí vận chuyển cho đơn từ 699.000₫ theo chính sách.</p>
+                </div>
+
+            </div>
+
+            <div class="benefit-item">
+
+                <i class="fa-solid fa-shield-halved"></i>
+
+                <div>
+                    <h3>Bảo hành 12 tháng</h3>
+                    <p>Hỗ trợ theo điều kiện bảo hành của sản phẩm.</p>
+                </div>
+
+            </div>
+
+            <div class="benefit-item">
+
+                <i class="fa-solid fa-arrows-rotate"></i>
+
+                <div>
+                    <h3>Chính sách 1 đổi 1</h3>
+                    <p>Tham khảo điều kiện đổi mới trong 30 ngày.</p>
+                </div>
+
+            </div>
+
+        </section>
+    </main>
+
 <footer class="main-footer">
         <div class="container footer-grid">
             <div class="footer-col">
                 <p class="footer-address">
                     Trạm thư giãn & Thiết bị chăm sóc sức khỏe tại gia.<br>
                     <strong>Địa chỉ:</strong> Số 150/8 Nguyễn Duy Cung, Phường 12, Gò Vấp, TP.HCM<br>
-                    <strong>Hotline:</strong> 09xx.xxx.xxx (Tư vấn 24/7)<br>
+                    <strong>Hotline:</strong> 09999998888 (Tư vấn 24/7)<br>
                     <strong>Email:</strong> support@relaxcare.vn
                 </p>
                 <div class="social-icons">
     <!-- Facebook -->
-    <a href="https://www.facebook.com/"
+    <a href="https://www.facebook.com/profile.php?id=61594697990602"
        class="social-icon"
        target="_blank"
        rel="noopener noreferrer"
@@ -85,7 +117,7 @@ document.addEventListener('click',e=>{let b=e.target.closest('[data-plus],[data-
     </a>
 
     <!-- Shopee -->
-    <a href="https://shopee.vn/"
+    <a href="https://shopee.vn/shop/148844707"
        class="social-icon"
        target="_blank"
        rel="noopener noreferrer"
@@ -94,7 +126,7 @@ document.addEventListener('click',e=>{let b=e.target.closest('[data-plus],[data-
     </a>
 
     <!-- TikTok -->
-    <a href="https://www.tiktok.com/"
+    <a href="https://www.tiktok.com/@relaxcare72?_r=1&_t=ZS-9AU8U9q8tS4"
        class="social-icon"
        target="_blank"
        rel="noopener noreferrer"
@@ -117,7 +149,7 @@ document.addEventListener('click',e=>{let b=e.target.closest('[data-plus],[data-
                 <h4>Hỗ trợ khách hàng</h4>
                 <ul class="footer-menu">
                     <li><a href="tranglienhe.html">Liên hệ chúng tôi</a></li>
-                    <li><a href="chinhsachgiaohang.html">Chính sách giao hàng (Freeship >699k)</a></li>
+                    <li><a href="chinhsachgiaohang.html">Chính sách giao hàng</a></li>
                     <li><a href="chinhsachbaohanh.html">Chính sách bảo hành 12 tháng</a></li>
                     <li><a href="chinhsach1doi1.html">Chính sách 1 đổi 1 trong 30 ngày</a></li>
                     <li><a href="kichhoatbaohanhdientu.html">Kích hoạt bảo hành điện tử</a></li>
@@ -140,6 +172,13 @@ document.addEventListener('click',e=>{let b=e.target.closest('[data-plus],[data-
             © Bản quyền thuộc về RelaxCare - Nhóm 2 Thương mại điện tử
         </div>
     </footer>
+
+    <script>
+(()=>{'use strict';const KEY='relaxcare_cart_v1',ORDERS='relaxcare_orders_v1',FREE=699000,SHIP=30000;const P={'massage-cam-tay':{name:'Máy massage cầm tay RelaxCare - 3 Chế Độ, 6 Đầu Thay',price:1290000,image:'a3cf825e-fa63-4d85-8963-18b51c829ba5.png'},'massage-chan':{name:'Máy massage chân RelaxCare',price:1890000,image:'de40eaa2-881b-4f91-8b2b-38d52845a111.png'},'massage-bung':{name:'Máy massage bụng RelaxCare',price:890000,image:'8ce2dd9d-968e-4003-8570-90b675975726.png'},'dau-nong-massage':{name:'Dầu nóng massage thảo dược RelaxCare',price:149000,image:'eadc43c3-11b0-4273-9c14-e3740e8e92fb (1).png'},'cao-dan-giam-dau':{name:'Cao dán giảm đau thảo dược RelaxCare - Hộp 10 Miếng',price:119000,image:'4486d8ec-a4aa-4a1b-a086-2d6b2cf0db13.png'}};const $=id=>document.getElementById(id),money=n=>(Number(n)||0).toLocaleString('vi-VN')+'₫',esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function read(){try{let x=JSON.parse(localStorage.getItem(KEY)||'{}');if(Array.isArray(x)){let o={};x.forEach(i=>{if(i)o[i.id||i.productId]={...i,id:i.id||i.productId,quantity:Number(i.quantity)||1}});x=o}return x&&typeof x==='object'?x:{}}catch(e){console.error(e);return{}}}function norm(raw){let o={};Object.entries(raw).forEach(([k,i])=>{if(!i||typeof i!=='object')return;let id=String(i.id||i.productId||k),p=P[id]||{},q=Math.floor(Number(i.quantity)||0);if(q>0)o[id]={id,name:String(i.name||p.name||id),price:Math.max(0,Number(i.price??p.price)||0),image: String(p.image || i.image || ''),quantity:q}});return o}function save(c){try{localStorage.setItem(KEY,JSON.stringify(c));return true}catch(e){alert('Không thể lưu giỏ hàng trong trình duyệt.');return false}}function calc(c){let a=Object.values(c),qty=a.reduce((s,i)=>s+i.quantity,0),sub=a.reduce((s,i)=>s+i.price*i.quantity,0),ship=sub===0||sub>=FREE?0:SHIP;return{a,qty,sub,ship,total:sub+ship}}
+function render(){let c=norm(read()),t=calc(c);document.querySelectorAll('[data-cart-count],.cart-icon .badge').forEach(x=>x.textContent=t.qty);$('cartItemCount').textContent=t.qty+' sản phẩm';$('summaryQuantity').textContent=t.qty;$('summarySubtotal').textContent=money(t.sub);$('summaryShipping').textContent=money(t.ship);$('summaryTotal').textContent=money(t.total);$('shippingMessage').textContent=t.sub>=FREE?'Đơn hàng của bạn được miễn phí vận chuyển!':'Miễn phí vận chuyển cho đơn hàng từ 699.000₫';$('shippingSubMessage').textContent=t.sub>0&&t.sub<FREE?'Mua thêm '+money(FREE-t.sub)+' để được miễn phí vận chuyển.':'Phí giao hàng tiêu chuẩn là 30.000₫.';$('freeShippingNote').textContent=t.sub>=FREE?'Bạn đã được miễn phí vận chuyển cho đơn hàng này.':'Đơn hàng từ 699.000₫ được miễn phí vận chuyển.';$('placeOrderBtn').disabled=!t.qty;if(!t.a.length){$('cartContent').innerHTML='<div class="empty"><div class="emoji">🛍️</div><h3>Giỏ hàng của bạn đang trống</h3><p>Hãy chọn sản phẩm RelaxCare mà bạn yêu thích nhé.</p><a class="btn" href="san-pham.html">Tiếp tục mua sắm</a></div>';return}$('cartContent').innerHTML='<div class="items">'+t.a.map(i=>`<article class="item"><img src="${esc(i.image)}" alt="${esc(i.name)}" onerror="this.style.visibility='hidden'"><div><h3>${esc(i.name)}</h3><span class="muted">Đơn giá: ${money(i.price)}</span><br><span class="qty"><button type="button" data-minus="${esc(i.id)}">−</button><span>${i.quantity}</span><button type="button" data-plus="${esc(i.id)}">+</button></span><button type="button" class="remove" data-remove="${esc(i.id)}">Xóa</button></div><div class="price">${money(i.price*i.quantity)}</div></article>`).join('')+'</div>'}
+document.addEventListener('click',e=>{let b=e.target.closest('[data-plus],[data-minus],[data-remove]');if(!b)return;let c=norm(read()),id=b.getAttribute('data-plus')||b.getAttribute('data-minus')||b.getAttribute('data-remove');if(!c[id])return;if(b.hasAttribute('data-remove'))delete c[id];else{c[id].quantity+=b.hasAttribute('data-plus')?1:-1;if(c[id].quantity<=0)delete c[id]}if(save(c))render()});$('checkoutForm').addEventListener('submit',e=>{e.preventDefault();let c=norm(read()),t=calc(c),n=$('checkoutNotice');n.className='notice';if(!t.qty){n.className='notice err';n.textContent='Giỏ hàng đang trống. Hãy chọn sản phẩm trước khi đặt hàng.';return}if(!e.currentTarget.reportValidity())return;let f=new FormData(e.currentTarget),order={code:'RC'+Date.now().toString().slice(-9),createdAt:new Date().toISOString(),customer:Object.fromEntries(f.entries()),payment:document.querySelector('[name="paymentMethod"]:checked')?.value||'cod',items:t.a,subtotal:t.sub,shipping:t.ship,total:t.total,status:'pending'};try{let orders=JSON.parse(localStorage.getItem(ORDERS)||'[]');orders.push(order);localStorage.setItem(ORDERS,JSON.stringify(orders));save({});render();n.className='notice ok';n.innerHTML='<b>Đã tạo đơn hàng demo!</b><br>Mã đơn: '+esc(order.code)+'<br>Tổng thanh toán: '+money(order.total)+'<br>Đơn được lưu trong trình duyệt; chưa gửi đến hệ thống bán hàng hoặc cổng thanh toán thật.';n.scrollIntoView({behavior:'smooth',block:'center'})}catch(err){n.className='notice err';n.textContent='Không thể lưu đơn hàng. Vui lòng thử lại.'}});addEventListener('storage',e=>{if(e.key===KEY)render()});render()})();
+</script>
 
     <!-- 1. LỚP PHỦ MỜ KHI MỞ MENU -->
     <div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
@@ -175,4 +214,5 @@ document.addEventListener('click',e=>{let b=e.target.closest('[data-plus],[data-
             <li><a href="tranglienhe.html">Blog</a></li>
         </ul>
     </aside>
-</body></html>
+</body>
+</html>
