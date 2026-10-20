@@ -118,7 +118,7 @@
             </div>
         </div>
     </header>
-
+<main class="product-detail-page">
     <!-- 3. BANNER SLIDER TỰ ĐỘNG & CHỦ ĐỘNG -->
     <section class="banner-slider-wrapper">
         <div class="slider-container" id="sliderContainer">
@@ -144,7 +144,7 @@
                     <a href="trangsanphamchitiet2.html" class="btn-primary">Mua ngay →</a>
                 </div>
                 <div class="slide-image">
-                    <img src="vn-11134207-81ztc-mtpf8gzp6tj699.webp" alt="Máy massage chân RelaxCare">
+                    <img src="de40eaa2-881b-4f91-8b2b-38d52845a111.png" alt="Máy massage chân RelaxCare">
                 </div>
             </div>
 
@@ -228,47 +228,6 @@
         </div>
     </section>
 
-    <!-- 6. HÀNG MÃ GIẢM GIÁ / VOUCHER ƯU ĐÃI -->
-    <section class="voucher-section">
-        <div class="container voucher-grid">
-            <!-- Voucher 1 -->
-            <div class="voucher-card">
-                <div class="voucher-left">MÃ: FREESHIP699</div>
-                <div class="voucher-right">
-                    <div class="voucher-title">Miễn phí giao hàng toàn quốc</div>
-                    <div class="voucher-desc">Áp dụng cho đơn hàng giá trị từ 699.000₫</div>
-                    <div class="voucher-actions">
-                        <button class="btn-detail" onclick="openVoucherModal('FREESHIP699', 'Miễn phí 100% phí vận chuyển cho tất cả đơn hàng từ 699.000₫ trên cả nước.')">Điều kiện</button>
-                        <button class="btn-copy" onclick="copyCode('FREESHIP699')">Sao chép</button>
-                    </div>
-                </div>
-            </div>
-            <!-- Voucher 2 -->
-            <div class="voucher-card">
-                <div class="voucher-left green-v">MÃ: RELAX300K</div>
-                <div class="voucher-right">
-                    <div class="voucher-title">Tiết kiệm 300.000₫ cho Combo 1</div>
-                    <div class="voucher-desc">Máy cầm tay + Dầu nóng + Cao dán giảm đau</div>
-                    <div class="voucher-actions">
-                        <button class="btn-detail" onclick="openVoucherModal('RELAX300K', 'Giảm trực tiếp 300.000₫ khi quý khách chọn đặt mua trọn bộ Combo 1.')">Điều kiện</button>
-                        <button class="btn-copy" onclick="copyCode('RELAX300K')">Sao chép</button>
-                    </div>
-                </div>
-            </div>
-            <!-- Voucher 3 -->
-            <div class="voucher-card">
-                <div class="voucher-left blue-v">MÃ: QUATANG</div>
-                <div class="voucher-right">
-                    <div class="voucher-title">Tặng túi chườm thảo dược</div>
-                    <div class="voucher-desc">Áp dụng cho đơn hàng từ 1.800.000₫</div>
-                    <div class="voucher-actions">
-                        <button class="btn-detail" onclick="openVoucherModal('QUATANG', 'Tự động gửi kèm 01 túi chườm thảo dược cao cấp khi đơn hàng đạt mức 1.800.000₫.')">Điều kiện</button>
-                        <button class="btn-copy" onclick="copyCode('QUATANG')">Sao chép</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- 7. SẢN PHẨM NỔI BẬT & ĐỔI ẢNH KHI RÊ CHUỘT (HOVER IMAGE SWAP) -->
     <section class="featured-section">
@@ -300,13 +259,26 @@
                             <span class="current-price">1.290.000₫</span>
                             <span class="old-price">1.558.000₫</span>
                         </div>
-                        <button
-    type="button"
-    data-cart-add="massage-cam-tay"
-    class="rc-add-cart">
-    Thêm vào giỏ hàng
-</button>
-                        <div class="bonus-tag">🎁 Bảo hành 12 tháng - 1 đổi 1 30 ngày</div>
+                        
+<div class="product-actions">
+
+    <a href="trangsanphamchitiet1.html"
+       class="view-product"
+       title="Xem chi tiết sản phẩm">
+        <i class="fa-solid fa-eye"></i>
+        <span>Xem chi tiết</span>
+    </a>
+
+    <button
+        type="button"
+        data-cart-add="massage-cam-tay"
+        class="rc-add-cart"
+        title="Thêm vào giỏ hàng"
+        aria-label="Thêm vào giỏ hàng">
+        <i class="fa-solid fa-cart-shopping"></i>
+    </button>
+
+</div>
                     </div>
                 </div>
 
@@ -327,13 +299,27 @@
                             <span class="current-price">2.120.000₫</span>
                             <span class="old-price">2.388.000₫</span>
                         </div>
-                        <button
-    type="button"
-    data-cart-add="massage-chan"
-    class="rc-add-cart">
-    Thêm vào giỏ hàng
-</button>
-                        <div class="bonus-tag">🚚 Miễn phí vận chuyển toàn quốc</div>
+                        <div class="product-actions">
+
+    <!-- Nút xem chi tiết sản phẩm 2 -->
+    <a href="trangsanphamchitiet2.html"
+       class="view-product"
+       title="Xem chi tiết sản phẩm">
+        <i class="fa-solid fa-eye"></i>
+        <span>Xem chi tiết</span>
+    </a>
+
+    <!-- Nút thêm sản phẩm 2 vào giỏ hàng -->
+    <button
+        type="button"
+        data-cart-add="massage-chan"
+        class="rc-add-cart"
+        title="Thêm vào giỏ hàng"
+        aria-label="Thêm vào giỏ hàng">
+        <i class="fa-solid fa-cart-shopping"></i>
+    </button>
+
+</div>
                     </div>
                 </div>
 
@@ -354,13 +340,27 @@
                             <span class="current-price">1.690.000₫</span>
                             <span class="old-price">1.839.000₫</span>
                         </div>
-                       <button
-    type="button"
-    data-cart-add="massage-bung"
-    class="rc-add-cart">
-    Thêm vào giỏ hàng
-</button>
-                        <div class="bonus-tag">🌿 3 chế độ chườm ấm thon gọn eo</div>
+                       <div class="product-actions">
+
+    <!-- Nút xem chi tiết sản phẩm 3 -->
+    <a href="trangsanphamchitiet3.html"
+       class="view-product"
+       title="Xem chi tiết sản phẩm">
+        <i class="fa-solid fa-eye"></i>
+        <span>Xem chi tiết</span>
+    </a>
+
+    <!-- Nút thêm sản phẩm 3 vào giỏ hàng -->
+    <button
+        type="button"
+        data-cart-add="massage-bung"
+        class="rc-add-cart"
+        title="Thêm vào giỏ hàng"
+        aria-label="Thêm vào giỏ hàng">
+        <i class="fa-solid fa-cart-shopping"></i>
+    </button>
+
+</div>
                     </div>
                 </div>
 
@@ -381,13 +381,27 @@
                             <span class="current-price">149.000₫</span>
                             <span class="old-price">180.000₫</span>
                         </div>
-                        <button
-    type="button"
-    data-cart-add="dau-nong-massage"
-    class="rc-add-cart">
-    Thêm vào giỏ hàng
-</button>
-                        <div class="bonus-tag">🌿 Gừng, quế, bạc hà & long não</div>
+                        <div class="product-actions">
+
+    <!-- Nút xem chi tiết sản phẩm 4 -->
+    <a href="trangsanphamchitiet4.html"
+       class="view-product"
+       title="Xem chi tiết sản phẩm">
+        <i class="fa-solid fa-eye"></i>
+        <span>Xem chi tiết</span>
+    </a>
+
+    <!-- Nút thêm sản phẩm 4 vào giỏ hàng -->
+    <button
+        type="button"
+        data-cart-add="dau-nong-massage"
+        class="rc-add-cart"
+        title="Thêm vào giỏ hàng"
+        aria-label="Thêm vào giỏ hàng">
+        <i class="fa-solid fa-cart-shopping"></i>
+    </button>
+
+</div>
                     </div>
                 </div>
 
@@ -408,19 +422,69 @@
                             <span class="current-price">119.000₫</span>
                             <span class="old-price">150.000₫</span>
                         </div>
-                        <button
-    type="button"
-    data-cart-add="cao-dan-giam-dau"
-    class="rc-add-cart">
-    Thêm vào giỏ hàng
-</button>
-                        <div class="bonus-tag">⏱️ Tác động dịu đau suốt 8 tiếng</div>
+                        <div class="product-actions">
+
+    <!-- Nút xem chi tiết sản phẩm 5 -->
+    <a href="trangsanphamchitiet5.html"
+       class="view-product"
+       title="Xem chi tiết sản phẩm">
+        <i class="fa-solid fa-eye"></i>
+        <span>Xem chi tiết</span>
+    </a>
+
+    <!-- Nút thêm sản phẩm 5 vào giỏ hàng -->
+    <button
+        type="button"
+        data-cart-add="cao-dan-giam-dau"
+        class="rc-add-cart"
+        title="Thêm vào giỏ hàng"
+        aria-label="Thêm vào giỏ hàng">
+        <i class="fa-solid fa-cart-shopping"></i>
+    </button>
+
+</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+<section class="catalog-benefits">
 
+            <div class="benefit-item">
+
+                <i class="fa-solid fa-truck-fast"></i>
+
+                <div>
+                    <h3>Giao hàng toàn quốc</h3>
+                    <p>Miễn phí vận chuyển cho đơn từ 699.000₫ theo chính sách.</p>
+                </div>
+
+            </div>
+
+            <div class="benefit-item">
+
+                <i class="fa-solid fa-shield-halved"></i>
+
+                <div>
+                    <h3>Bảo hành 12 tháng</h3>
+                    <p>Hỗ trợ theo điều kiện bảo hành của sản phẩm.</p>
+                </div>
+
+            </div>
+
+            <div class="benefit-item">
+
+                <i class="fa-solid fa-arrows-rotate"></i>
+
+                <div>
+                    <h3>Chính sách 1 đổi 1</h3>
+                    <p>Tham khảo điều kiện đổi mới trong 30 ngày.</p>
+                </div>
+
+            </div>
+
+        </section>
+    </main>    
     <!-- 8. FOOTER CHUẨN GIAO DIỆN -->
     <footer class="main-footer">
         <div class="container footer-grid">
@@ -433,7 +497,7 @@
                 </p>
                 <div class="social-icons">
     <!-- Facebook -->
-    <a href="https://www.facebook.com/"
+    <a href="https://www.facebook.com/profile.php?id=61594697990602"
        class="social-icon"
        target="_blank"
        rel="noopener noreferrer"
@@ -442,7 +506,7 @@
     </a>
 
     <!-- Shopee -->
-    <a href="https://shopee.vn/"
+    <a href="https://shopee.vn/shop/148844707"
        class="social-icon"
        target="_blank"
        rel="noopener noreferrer"
@@ -451,7 +515,7 @@
     </a>
 
     <!-- TikTok -->
-    <a href="https://www.tiktok.com/"
+    <a href="https://www.tiktok.com/@relaxcare72?_r=1&_t=ZS-9AU8U9q8tS4"
        class="social-icon"
        target="_blank"
        rel="noopener noreferrer"
@@ -474,7 +538,7 @@
                 <h4>Hỗ trợ khách hàng</h4>
                 <ul class="footer-menu">
                     <li><a href="tranglienhe.html">Liên hệ chúng tôi</a></li>
-                    <li><a href="chinhsachgiaohang.html">Chính sách giao hàng (Freeship >699k)</a></li>
+                    <li><a href="chinhsachgiaohang.html">Chính sách giao hàng</a></li>
                     <li><a href="chinhsachbaohanh.html">Chính sách bảo hành 12 tháng</a></li>
                     <li><a href="chinhsach1doi1.html">Chính sách 1 đổi 1 trong 30 ngày</a></li>
                     <li><a href="kichhoatbaohanhdientu.html">Kích hoạt bảo hành điện tử</a></li>
@@ -954,35 +1018,35 @@ document.addEventListener("DOMContentLoaded", function () {
         {
             name: "Máy massage cầm tay RelaxCare - 3 Chế Độ, 6 Đầu Thay",
             price: "1.290.000₫",
-            image: "images/may-massage-cam-tay.jpg",
+            image: "a3cf825e-fa63-4d85-8963-18b51c829ba5.png",
             link: "san-pham.html"
         },
 
         {
             name: "Máy massage chân RelaxCare - Day Huyệt & Hồng Ngoại",
             price: "2.120.000₫",
-            image: "images/may-massage-chan.jpg",
+            image: "de40eaa2-881b-4f91-8b2b-38d52845a111.png",
             link: "san-pham.html"
         },
 
         {
             name: "Máy massage bụng RelaxCare - Đai Massage & Chườm Ấm",
             price: "1.690.000₫",
-            image: "images/may-massage-bung.jpg",
+            image: "8ce2dd9d-968e-4003-8570-90b675975726.png",
             link: "san-pham.html"
         },
 
         {
             name: "Dầu nóng massage RelaxCare Thảo Mộc Tự Nhiên 100ml",
             price: "149.000₫",
-            image: "images/dau-nong-massage.jpg",
+            image: "eadc43c3-11b0-4273-9c14-e3740e8e92fb (1).png",
             link: "san-pham.html"
         },
 
         {
             name: "Cao dán giảm đau thảo dược RelaxCare - Hộp 10 Miếng",
             price: "119.000₫",
-            image: "images/cao-dan-giam-dau.jpg",
+            image: "4486d8ec-a4aa-4a1b-a086-2d6b2cf0db13.png",
             link: "san-pham.html"
         }
 
@@ -2178,56 +2242,108 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 <script src="js/cart.js"></script>
-<!-- POPUP CHIẾN DỊCH TẾT RELAXCARE -->
+<!-- POPUP ƯU ĐÃI RELAXCARE -->
 <div id="tetPopup" class="tet-popup-overlay">
 
     <div class="tet-popup">
 
-        <!-- Nút đóng popup -->
-        <button class="tet-popup-close"
-                id="closeTetPopup"
-                aria-label="Đóng popup">
+        <!-- Nút đóng -->
+        <button
+            type="button"
+            class="tet-popup-close"
+            id="closeTetPopup"
+            aria-label="Đóng popup">
             &times;
         </button>
 
-        <!-- Ảnh chiến dịch Tết của bạn -->
-        <a href="index.html" class="tet-popup-image-link">
+        <!-- CỘT TRÁI: ẢNH CHIẾN DỊCH -->
+        <div class="tet-popup-left">
             <img
                 src="Pop-up chiến dịch Tết RelaxCare.png"
                 alt="Chiến dịch Tết RelaxCare"
-                class="tet-popup-image"
+                class="tet-popup-background"
             >
-        </a>
+        </div>
 
-        <!-- Nội dung quảng cáo -->
-        <div class="tet-popup-content">
+        <!-- CỘT PHẢI: NỘI DUNG VÀ FORM -->
+        <div class="tet-popup-right">
 
-            <span class="tet-popup-label">
-                🌸 XUÂN SUM VẦY – TẾT AN KHANG 🌸
-            </span>
-
-            <h2>ĐÓN TẾT AN KHANG</h2>
-
-            <p>
-                Trao sức khỏe – Gửi yêu thương.
-                Cùng RelaxCare chăm sóc sức khỏe gia đình
-                trong dịp Tết này!
-            </p>
-
-            <a href="index.html" class="tet-popup-button">
-                KHÁM PHÁ NGAY
-                <span>→</span>
+            <!-- Logo -->
+            <a href="index.html" class="tet-popup-logo">
+                <img
+                    src="b223c319-9565-4deb-a6e3-780d776867d7-Photoroom.png"
+                    alt="RelaxCare"
+                >
             </a>
 
-            <div class="tet-popup-footer">
-                 RelaxCare – Chăm sóc sức khỏe tại nhà
+            <!-- Tiêu đề -->
+            <div class="tet-popup-heading">
+                <h2>NHẬN ƯU ĐÃI</h2>
+
+                <p>
+                    Để lại thông tin, RelaxCare sẽ liên hệ tư vấn cho bạn!
+                </p>
             </div>
+
+            <!-- Form -->
+            <form id="tetOfferForm" class="tet-popup-form">
+
+                <!-- Họ tên -->
+                <div class="tet-form-group">
+                    <label for="tetCustomerName">
+                        Họ và tên <span>*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="tetCustomerName"
+                        name="customerName"
+                        placeholder="Nhập họ và tên"
+                        autocomplete="name"
+                        required
+                    >
+                </div>
+
+                <!-- Số điện thoại -->
+                <div class="tet-form-group">
+                    <label for="tetCustomerPhone">
+                        Số điện thoại <span>*</span>
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="tetCustomerPhone"
+                        name="customerPhone"
+                        placeholder="Nhập số điện thoại"
+                        autocomplete="tel"
+                        inputmode="numeric"
+                        pattern="0[0-9]{9}"
+                        maxlength="10"
+                        title="Vui lòng nhập số điện thoại gồm 10 chữ số, bắt đầu bằng số 0"
+                        required
+                    >
+                </div>
+
+                <!-- Nút nhận ưu đãi -->
+                <button
+                    type="submit"
+                    class="tet-popup-button">
+                    NHẬN ƯU ĐÃI NGAY
+                </button>
+
+                <p class="tet-popup-note">
+                    Bằng cách gửi thông tin, bạn đồng ý để RelaxCare
+                    liên hệ tư vấn về sản phẩm và chương trình ưu đãi.
+                </p>
+
+            </form>
 
         </div>
 
     </div>
 
 </div>
+
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
